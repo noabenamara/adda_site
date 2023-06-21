@@ -14,9 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/',[\App\Http\Controllers\AtelierController::class,'index'])->name('index');
+
+Route::get('/ateliers',[\App\Http\Controllers\AtelierController::class,'index'])->name('atelier.index');
+Route::get('/ateliers/{atelier}',[\App\Http\Controllers\AtelierController::class,'show'])->name('atelier.show');
+
+
+
+Route::middleware('auth')->group(function (){
+    Route::prefix('/administration')->name('administration.')->group(function () {
+        Route::prefix('/ateliers')->name('atelier.')->group(function (){
+            Route::get('/', [\App\Http\Controllers\AdministrationController::class, 'index'])->name('index');
+            Route::get('/create', [\App\Http\Controllers\AdministrationController::class, 'create'])->name('create')->can('create','\App\Models\Atelier');
+            Route::post('/store', [\App\Http\Controllers\AdministrationController::class, 'store'])->name('store')->can('create','\App\Models\Atelier');
+            Route::get('/{atelier}', [\App\Http\Controllers\AdministrationController::class, 'edit'])->name('edit')->can('update','atelier');
+            Route::patch('/{atelier}', [\App\Http\Controllers\AdministrationController::class, 'update'])->name('update')->can('update','atelier');
+            Route::delete('/{atelier}', [\App\Http\Controllers\AdministrationController::class, 'destroy'])->name('destroy')->can('delete','atelier');
+        });
+    });
 });
+
+Route::get('/paniers', function(){
+    return view('panier.index');
+})->middleware('auth')->name('paniers');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

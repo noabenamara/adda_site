@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo-min class="block h-9 w-auto fill-current text-gray-800"/>
                     </a>
                 </div>
 
@@ -15,9 +15,21 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('paniers')" :active="request()->routeIs('paniers')">
+                        {{ __('Paniers Bio') }}
+                    </x-nav-link>
+
+                    @can('create',\App\Models\Atelier::class)
+                        <x-nav-link :href="route('administration.atelier.index')" :active="request()->routeIs('administration.atelier.index')">
+                            {{ __('Gestion des ateliers') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
+
+        @auth
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
@@ -97,4 +109,5 @@
             </div>
         </div>
     </div>
+    @endauth
 </nav>
