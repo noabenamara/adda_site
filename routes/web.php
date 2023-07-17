@@ -25,12 +25,12 @@ Route::get('/ateliers/{atelier}',[\App\Http\Controllers\AtelierController::class
 Route::middleware('auth')->group(function (){
     Route::prefix('/administration')->name('administration.')->group(function () {
         Route::prefix('/ateliers')->name('atelier.')->group(function (){
-            Route::get('/', [\App\Http\Controllers\AdministrationController::class, 'index'])->name('index');
-            Route::get('/create', [\App\Http\Controllers\AdministrationController::class, 'create'])->name('create')->can('create','\App\Models\Atelier');
-            Route::post('/store', [\App\Http\Controllers\AdministrationController::class, 'store'])->name('store')->can('create','\App\Models\Atelier');
-            Route::get('/{atelier}', [\App\Http\Controllers\AdministrationController::class, 'edit'])->name('edit')->can('update','atelier');
-            Route::patch('/{atelier}', [\App\Http\Controllers\AdministrationController::class, 'update'])->name('update')->can('update','atelier');
-            Route::delete('/{atelier}', [\App\Http\Controllers\AdministrationController::class, 'destroy'])->name('destroy')->can('delete','atelier');
+            Route::get('/', [\App\Http\Controllers\AdminAtelierController::class, 'index'])->name('index');
+            Route::get('/create', [\App\Http\Controllers\AdminAtelierController::class, 'create'])->name('create')->can('create','\App\Models\Atelier');
+            Route::post('/store', [\App\Http\Controllers\AdminAtelierController::class, 'store'])->name('store')->can('create','\App\Models\Atelier');
+            Route::get('/{atelier}', [\App\Http\Controllers\AdminAtelierController::class, 'edit'])->name('edit')->can('update','atelier');
+            Route::patch('/{atelier}', [\App\Http\Controllers\AdminAtelierController::class, 'update'])->name('update')->can('update','atelier');
+            Route::delete('/{atelier}', [\App\Http\Controllers\AdminAtelierController::class, 'destroy'])->name('destroy')->can('delete','atelier');
         });
     });
 });

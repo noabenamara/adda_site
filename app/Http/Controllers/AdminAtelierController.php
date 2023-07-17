@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
-class AdministrationController extends Controller
+class AdminAtelierController extends Controller
 {
     public function index(): View{
         return view('administration.atelier.index',[
