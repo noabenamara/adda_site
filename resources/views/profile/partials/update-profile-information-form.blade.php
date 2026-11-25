@@ -47,6 +47,24 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="adresse" :value="__('Adresse')" />
+            <x-text-input id="adresse" name="adresse" type="text" class="mt-1 block w-full" :value="old('adresse', $user->adresse)" autofocus autocomplete="adresse" />
+            <x-input-error class="mt-2" :messages="$errors->get('adresse')" />
+        </div>
+
+        <div>
+            <x-input-label for="codePostal" :value="__('Code Postale')" />
+            <x-text-input id="codePostal" name="codePostal" type="text" class="mt-1 block w-full" :value="old('codePostal', $user->codePostal)" autofocus autocomplete="codePostal" />
+            <x-input-error class="mt-2" :messages="$errors->get('codePostal')" />
+        </div>
+
+        <div>
+            <x-input-label for="ville" :value="__('Ville')" />
+            <x-text-input id="ville" name="ville" type="text" class="mt-1 block w-full" :value="old('ville', $user->ville)" autofocus autocomplete="ville" />
+            <x-input-error class="mt-2" :messages="$errors->get('ville')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

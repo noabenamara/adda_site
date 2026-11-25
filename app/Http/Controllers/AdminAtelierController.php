@@ -21,10 +21,13 @@ class AdminAtelierController extends Controller
 
     public function store(Request $request){
         $atelier = Atelier::create([
-            'titre'=>$request->input('titre'),
-            'description'=>$request->input('description'),
-            'details'=>$request->input('details'),
+            'titre'=>$request->string('titre'),
+            'description'=>$request->string('description'),
+            'details'=>$request->string('details'),
             'picto'=>$request->file('picto')->store('\images','public'),
+            'jour'=>$request->string('jour'),
+            'horaire'=>$request->date('horaire'),
+            'duree'=>$request->integer('duree'),
         ]);
         return redirect(route('administration.atelier.index'))->with('success','Nouvel atelier sauvegardé');
     }
@@ -37,9 +40,12 @@ class AdminAtelierController extends Controller
 
     public function update(Request $request,Atelier $atelier){
         $atelier->update([
-            'titre'=>$request->input('titre'),
-            'description'=>$request->input('description'),
-            'details'=>$request->input('details'),
+            'titre'=>$request->string('titre'),
+            'description'=>$request->string('description'),
+            'details'=>$request->string('details'),
+            'jour'=>$request->string('jour'),
+            'horaire'=>$request->date('horaire'),
+            'duree'=>$request->integer('duree'),
         ]);
         if (!$request->file('picto')==null){
             Storage::disk('public')->delete($atelier->picto);

@@ -13,6 +13,9 @@ class Atelier extends Model
         'titre',
         'description',
         'details',
-        'picto'
+        'picto',
+        'jour',
+        'horaire',
+        'duree',
     ];
 }

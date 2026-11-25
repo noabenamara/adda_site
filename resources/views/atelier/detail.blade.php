@@ -4,6 +4,11 @@
 
     <div class="grid grid-cols-1 gap-4 mx-6">
         <div class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex">
+            <h2 class="px-1 mt-4 text-xl font-semibold text-gray-900 dark:text-white">
+                Atelier se deroulant le {{$atelier->jour}} à partir de {{$atelier->horaire}}. Durée {{$atelier->duree}} heure(s)
+            </h2>
+        </div>
+        <div class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex">
             <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
                 <img src="{{asset('storage')}}{{$atelier->picto}}"/>
             </div>

@@ -21,6 +21,8 @@ Route::get('/ateliers',[\App\Http\Controllers\AtelierController::class,'index'])
 Route::get('/ateliers/{atelier}',[\App\Http\Controllers\AtelierController::class,'show'])->name('atelier.show');
 
 
+Route::get('/produits',[\App\Http\Controllers\ProduitController::class,'index'])->name('produit.index');
+Route::get('/produits/{produit}',[\App\Http\Controllers\ProduitController::class,'show'])->name('produit.show');
 
 Route::middleware('auth')->group(function (){
     Route::prefix('/administration')->name('administration.')->group(function () {
@@ -31,6 +33,14 @@ Route::middleware('auth')->group(function (){
             Route::get('/{atelier}', [\App\Http\Controllers\AdminAtelierController::class, 'edit'])->name('edit')->can('update','atelier');
             Route::patch('/{atelier}', [\App\Http\Controllers\AdminAtelierController::class, 'update'])->name('update')->can('update','atelier');
             Route::delete('/{atelier}', [\App\Http\Controllers\AdminAtelierController::class, 'destroy'])->name('destroy')->can('delete','atelier');
+        });
+        Route::prefix('/produits')->name('produit.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\AdminProduitController::class, 'index'])->name('index');
+            Route::get('/create', [\App\Http\Controllers\AdminProduitController::class, 'create'])->name('create')->can('create','\App\Models\Produit');
+            Route::post('/store', [\App\Http\Controllers\AdminProduitController::class, 'store'])->name('store')->can('create','\App\Models\Produit');
+            Route::get('/produits/{produit}', [\App\Http\Controllers\AdminProduitController::class, 'edit'])->name('edit')->can('update','produit');
+            Route::patch('/produits/{produit}', [\App\Http\Controllers\AdminProduitController::class, 'update'])->name('update')->can('update','produit');
+            Route::delete('/produits/{produit}', [\App\Http\Controllers\AdminProduitController::class, 'destroy'])->name('destroy')->can('delete', 'produit');
         });
     });
 });
@@ -43,6 +53,11 @@ Route::get('/paniers', function(){
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/confidentialite', function () {
+    return view('confidentialite');
+})->name('charte');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

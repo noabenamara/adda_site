@@ -25,6 +25,12 @@
                             {{ __('Gestion des ateliers') }}
                         </x-nav-link>
                     @endcan
+
+                    @can('create',\App\Models\Atelier::class)
+                        <x-nav-link :href="route('administration.produit.index')" :active="request()->routeIs('administration.produit.index')">
+                            {{ __('Gestion des produit') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

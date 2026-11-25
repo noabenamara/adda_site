@@ -52,9 +52,55 @@
                             <x-text-input id="picto" class="block mt-1 w-full"
                                           type="file"
                                           name="picto"
+                                          accept="image/*"
                                           required/>
 
                             <x-input-error :messages="$errors->get('picto')" class="mt-2" />
+                        </div>
+
+                        <!-- jour -->
+                        <div class="mt-4">
+                            <x-input-label for="jour" :value="__('jour')" />
+
+                            <x-text-input id="jour" class="block mt-1 w-full"
+                                          list="Ljour"
+                                          name="jour"
+                                          required/>
+
+                            <datalist id="Ljour">
+                                <option value="lundi"></option>
+                                <option value="mardi"></option>
+                                <option value="mercredi"></option>
+                                <option value="jeudi"></option>
+                                <option value="vendredi"></option>
+                                <option value="samedi"></option>
+                                <option value="dimanche"></option>
+                            </datalist>
+                            <x-input-error :messages="$errors->get('jour')" class="mt-2" />
+                        </div>
+
+                        <!-- horaire -->
+                        <div class="mt-4">
+                            <x-input-label for="horaire" :value="__('horaire')" />
+
+                            <x-text-input id="horaire" class="block mt-1 w-full"
+                                          type="time"
+                                          name="horaire"
+                                          required/>
+
+                            <x-input-error :messages="$errors->get('horaire')" class="mt-2" />
+                        </div>
+                    
+                        <!-- duree -->
+                        <div class="mt-4">
+                            <x-input-label for="duree" :value="__('duree')" />
+
+                            <x-text-input id="duree" class="block mt-1 w-full"
+                                          type="number"
+                                          name="duree"
+                                          required/>
+
+                            <x-input-error :messages="$errors->get('duree')" class="mt-2" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
